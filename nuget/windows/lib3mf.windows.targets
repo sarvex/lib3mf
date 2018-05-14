@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="Lib3MF_Windows_init">
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-Lib3MF_Windows Condition="'$(Linkage-Lib3MF_Windows)' == ''">static</Linkage-Lib3MF_Windows>
+    <CallingConvention-Lib3MF_Windows Condition="'$(CallingConvention-Lib3MF_Windows)' == ''">cdecl</CallingConvention-Lib3MF_Windows>
+  </PropertyGroup>
+  <ItemDefinitionGroup Label="Win32 and Debug" Condition="'$(Platform.ToLower())' == 'win32' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\....\native\lib\Win32\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="Win32 and Release" Condition="'$(Platform.ToLower())' == 'win32' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\native\lib\Win32\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="UWP32 and Debug" Condition="'$(Platform.ToLower())' == 'win32' And '$(ApplicationType.ToLower())' == 'Windows Store' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\Win32\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="UWP32 and Release" Condition="'$(Platform.ToLower())' == 'win32' And '$(ApplicationType.ToLower())' == 'Windows Store' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\Win32\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="x64 and Debug" Condition="'$(Platform.ToLower())' == 'x64' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\native\lib\x64\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="x64 and Release" Condition="'$(Platform.ToLower())' == 'x64' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\native\lib\x64\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="UWP x64 and Debug" Condition="'$(Platform.ToLower())' == 'x64'  And '$(ApplicationType.ToLower())' == 'Windows Store' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\x64\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="UWP x64 and Release" Condition="'$(Platform.ToLower())' == 'x64'  And '$(ApplicationType.ToLower())' == 'Windows Store' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\x64\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ARM and Debug" Condition="'$(Platform.ToLower())' == 'arm' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\ARM\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ARM and Release" Condition="'$(Platform.ToLower())' == 'arm' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\ARM\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\build\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\build\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Target Name="Lib3MF_Windows_init">
+    <Lib3MF_Windows_Contains Text="Linkage-dynamic" Library="Lib3MF_Windows" Value="dynamic" Condition="'$(Linkage-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="Linkage-static" Library="Lib3MF_Windows" Value="static" Condition="'$(Linkage-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="Linkage-ltcg" Library="Lib3MF_Windows" Value="ltcg" Condition="'$(Linkage-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="Linkage-sxs" Library="Lib3MF_Windows" Value="sxs" Condition="'$(Linkage-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="CallingConvention-cdecl" Library="Lib3MF_Windows" Value="cdecl" Condition="'$(CallingConvention-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="CallingConvention-stdcall" Library="Lib3MF_Windows" Value="stdcall" Condition="'$(CallingConvention-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="CallingConvention-fastcall" Library="Lib3MF_Windows" Value="fastcall" Condition="'$(CallingConvention-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="CallingConvention-thiscall" Library="Lib3MF_Windows" Value="thiscall" Condition="'$(CallingConvention-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+    <Lib3MF_Windows_Contains Text="CallingConvention-clrcall" Library="Lib3MF_Windows" Value="clrcall" Condition="'$(CallingConvention-Lib3MF_Windows)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-Lib3MF_Windows" />
+    </Lib3MF_Windows_Contains>
+  </Target>
+</Project>

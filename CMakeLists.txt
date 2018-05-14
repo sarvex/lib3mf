@@ -15,7 +15,7 @@ set(CMAKE_INSTALL_BINDIR bin CACHE PATH "directory for installing binary files")
 set(CMAKE_INSTALL_LIBDIR lib CACHE PATH "directory for installing library files")
 set(CMAKE_INSTALL_INCLUDEDIR include/lib3mf CACHE PATH "directory for installing header files")
 
-set(NMR_COM_NATIVE FALSE) # by default, do not actually implement a COM interface
+set(NMR_COM_NATIVE CACHE BOOL FALSE) # by default, do not actually implement a COM interface
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   # using GCC
   add_definitions(-DBUILD_DLL)
@@ -45,6 +45,7 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/Include/Model/COM/NMR_COMVersion.h.i
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/nuget/ios/lib3mf.iOS.nuspec.in" "${CMAKE_CURRENT_BINARY_DIR}/nuget/ios/lib3mf.iOS.nuspec")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/nuget/macos/lib3mf.macOS.nuspec.in" "${CMAKE_CURRENT_BINARY_DIR}/nuget/macos/lib3mf.macOS.nuspec")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/nuget/windows/lib3mf.windows.nuspec.in" "${CMAKE_CURRENT_BINARY_DIR}/nuget/windows/lib3mf.windows.nuspec")
 
 include(Source/CMakeLists.txt)
 
@@ -107,15 +108,17 @@ if (UNIX OR MINGW)
 	if (NOT APPLE)
 		SET_TARGET_PROPERTIES(${PROJECT_NAME}_s PROPERTIES LINK_FLAGS -s)
 	endif()
-	find_library(LIBUUID_PATH uuid)
-	if(NOT LIBUUID_PATH)
-		message(FATAL_ERROR "libuuid not found")
+	if(NOT IOS_PLATFORM)
+		find_library(LIBUUID_PATH uuid)
+		if(NOT LIBUUID_PATH)
+			message(FATAL_ERROR "libuuid not found")
+		endif()
+		target_link_libraries(${PROJECT_NAME}_s ${LIBUUID_PATH})
 	endif()
-	target_link_libraries(${PROJECT_NAME}_s ${LIBUUID_PATH})
 else()
 	# wd4996 masks the deprecated-warning
 	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;/wd4996>")
-	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/sdl;/WX;/Oi;/Gy;/FC;/wd4996>")
+	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/Zi;/sdl;/WX;/Oi;/Gy;/FC;/wd4996>")
 endif()
 
 
