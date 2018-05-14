@@ -43,6 +43,9 @@ endif()
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/Include/Model/COM/NMR_COMVersion.h.in" "${CMAKE_CURRENT_BINARY_DIR}/Include/Model/COM/NMR_COMVersion.h")
 
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/nuget/ios/lib3mf.iOS.nuspec.in" "${CMAKE_CURRENT_BINARY_DIR}/nuget/ios/lib3mf.iOS.nuspec")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/nuget/macos/lib3mf.macOS.nuspec.in" "${CMAKE_CURRENT_BINARY_DIR}/nuget/macos/lib3mf.macOS.nuspec")
+
 include(Source/CMakeLists.txt)
 
 if (WIN32)

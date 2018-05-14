@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>lib3mf.ios</id>
+    <version>${LIB3MF_VERSION_MAJOR}.${LIB3MF_VERSION_MINOR}.${LIB3MF_VERSION_MICRO}.0</version>
+    <title>Lib3MF from the 3MF Consortium</title>
+    <authors>3MF Consortium</authors>
+    <owners>3MF Consortium</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C++ library for decoding and encoding 3mf files.</description>
+    <copyright>Copyright (C) 2015 Microsoft Corporation  Copyright (C) 2015 netfabb GmbH</copyright>
+    <tags></tags>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <!-- iOS|Debug -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/ios/Debug-iphoneos/lib3MF_s.a" target="/build/native/lib/iOS/Debug/static" />
+    <!-- iOS|Release -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/ios/Release-iphoneos/lib3MF_s.a" target="/build/native/lib/iOS/Release/static" />
+    <!-- iOSSimulator64|Debug -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/ios_simulator/Debug-iphonesimulator/lib3MF_s.a" target="/build/native/lib/iOSSimulator64/Debug/static" />
+    <!-- iOSSimulator64|Release -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/ios_simulator/Release-iphonesimulator/lib3MF_s.a" target="/build/native/lib/iOSSimulator64/Release/static" />
+    <!-- Build (C++) -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/include/**/*" target="/build/native/include" />
+    <!-- CMake Module -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/nuget/ios/FindLib3MF.iOS.cmake" target="" />
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/nuget/ios/FindLib3MF.iOSSimulator64.cmake" target="" />
+  </files>
+</package>
