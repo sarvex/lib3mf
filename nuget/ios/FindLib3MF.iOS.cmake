@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.9)
+
+if (NOT Lib3MF_IOS_FOUND)
+    set(Lib3MF_IOS_FOUND TRUE)
+    add_library(Lib3MF STATIC IMPORTED GLOBAL)
+    set_target_properties(Lib3MF PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}/build/native/include")
+    set_target_properties(Lib3MF PROPERTIES IMPORTED_LOCATION_DEBUG "${CMAKE_CURRENT_LIST_DIR}/build/native/lib/iOS/Debug/static/lib3MF_s.a")
+    set_target_properties(Lib3MF PROPERTIES IMPORTED_LOCATION_RELEASE "${CMAKE_CURRENT_LIST_DIR}/build/native/lib/iOS/Release/static/lib3MF_s.a")
+    set_target_properties(Lib3MF PROPERTIES IMPORTED_LOCATION_RELWITHDEBINFO "${CMAKE_CURRENT_LIST_DIR}/build/native/lib/iOS/Release/static/lib3MF_s.a")
+    set_target_properties(Lib3MF PROPERTIES IMPORTED_LOCATION_MINSIZEREL "${CMAKE_CURRENT_LIST_DIR}/build/native/lib/iOS/Release/static/lib3MF_s.a")
+endif()

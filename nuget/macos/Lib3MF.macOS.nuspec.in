@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>lib3mf.macos</id>
+    <version>${LIB3MF_VERSION_MAJOR}.${LIB3MF_VERSION_MINOR}.${LIB3MF_VERSION_MICRO}.0</version>
+    <title>Lib3MF from the 3MF Consortium</title>
+    <authors>3MF Consortium</authors>
+    <owners>3MF Consortium</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C++ library for decoding and encoding 3mf files.</description>
+    <copyright>Copyright (C) 2015 Microsoft Corporation  Copyright (C) 2015 netfabb GmbH</copyright>
+    <tags></tags>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <!-- x64|Debug -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Debug/lib3MF_s.a" target="/build/native/lib/x64/Debug/static" />
+    <!-- x64|Release -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Release/lib3MF_s.a" target="/build/native/lib/x64/Release/static" />
+    <!-- Build (C++) -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/include/**/*" target="/build/native/include" />
+    <!-- CMake Module -->
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/nuget/macos/FindLib3MF.macOS.cmake" target="" />
+  </files>
+</package>
