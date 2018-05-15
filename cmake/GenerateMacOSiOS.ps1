@@ -9,6 +9,7 @@ Use BuildMacOSiOSNuGet.ps1 to build and generate the nuget packages.
 
 .EXAMPLE
 GenerateMacOSiOS.ps1
+GenerateMacOSiOS.ps1 -LIB3MF_VERSION_PATCH 21
 #>
 
 [CmdletBinding()]
@@ -16,7 +17,8 @@ param(
     [switch]$Clean,
     [switch]$NoMacOS,
     [switch]$NoIOS,
-    [switch]$NoSimulator
+    [switch]$NoSimulator,
+    $LIB3MF_VERSION_PATCH = 0
 )
 
 $MACOS_OUTPUT_FOLDER = "macos"
@@ -35,7 +37,7 @@ function GenerateProjectMacOS()
     Push-Location "$PSScriptRoot/../build/$MACOS_OUTPUT_FOLDER"
     try
     {
-      cmake -G Xcode ../..
+      cmake -G Xcode "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH" ../..
     }
     finally
     {
@@ -50,7 +52,7 @@ function GenerateProjectIOS()
     Push-Location "$PSScriptRoot/../build/$IOS_OUTPUT_FOLDER" | Out-Null
     try
     {
-      cmake -G Xcode ../.. -DCMAKE_TOOLCHAIN_FILE="$PSScriptRoot/ios.toolchain.cmake" -DIOS_PLATFORM=OS -DIOS_DEPLOYMENT_TARGET="9.0" | Write-Host
+      cmake -G Xcode ../.. "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH" -DCMAKE_TOOLCHAIN_FILE="$PSScriptRoot/ios.toolchain.cmake" -DIOS_PLATFORM=OS -DIOS_DEPLOYMENT_TARGET="9.0" | Write-Host
     }
     finally
     {
