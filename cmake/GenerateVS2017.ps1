@@ -7,11 +7,13 @@ Generate the Windows VS 2017 projects (Win32, x64, UWP).  Use BuildVS2017NuGet.p
 
 .EXAMPLE
 BuildVS2017NuGet.ps1
+BuildVS2017NuGet.ps1 -LIB3MF_VERSION_PATCH 5
 #>
 
 [CmdletBinding()]
 param(
-    [switch]$Clean = $false
+    [switch]$Clean = $false,
+    $LIB3MF_VERSION_PATCH = 0
 )
 
 function Clean
@@ -26,20 +28,22 @@ function BuildPlatform($platform, $path, $isUWP)
     Push-Location "$PSScriptRoot/../build/$path" | Out-Null
     try
     {
+        $argList = @(
+            "-G", "$platform",
+            "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH"
+        )
+
+        # Add UWP arguments for UWP build
         if ($isUWP)
         {
-            $argList = @(
-                "-G", "$platform",
+            $argList += @(
                 "-DCMAKE_SYSTEM_NAME=WindowsStore",
-                "-DCMAKE_SYSTEM_VERSION=10.0",
-                "..\.."
+                "-DCMAKE_SYSTEM_VERSION=10.0"
             )
-            & cmake $argList
         }
-        else
-        {
-            & cmake -G "$platform" ..\..
-        }
+
+        & cmake $argList "..\.."
+
     }
     finally
     {
