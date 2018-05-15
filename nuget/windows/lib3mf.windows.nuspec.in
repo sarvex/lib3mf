@@ -23,8 +23,8 @@
     <file src="..\..\..\buildwin64\Debug\lib3MF_s.lib" target="\build\native\lib/x64\Debug" />
     <file src="..\..\..\buildwin64\Debug\lib3MF_s.pdb" target="\build\native\lib/x64\Debug" />
     <!-- x64|Release -->
-    <file src="..\..\..\buildwin64\Release\lib3MF_s.lib" target="\build\native\lib/x64\Release\static" />
-    <file src="..\..\..\buildwin64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/x64\Release\static" />
+    <file src="..\..\..\buildwin64\Release\lib3MF_s.lib" target="\build\native\lib/x64\Release" />
+    <file src="..\..\..\buildwin64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/x64\Release" />
     <!-- UWPARM|Debug -->
     <file src="..\..\..\buildarm\Debug\lib3MF_s.lib" target="\build\uap10.0\lib\ARM\Debug" />
     <file src="..\..\..\buildarm\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM\Debug" />
@@ -41,8 +41,8 @@
     <file src="..\..\..\builduwp64\Debug\lib3MF_s.lib" target="\build\uap10.0\lib/x64\Debug" />
     <file src="..\..\..\builduwp64\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Debug" />
     <!-- UWP64|Release -->
-    <file src="..\..\..\builduwp64\Release\lib3MF_s.lib" target="\build\uap10.0\lib/x64\Release\static" />
-    <file src="..\..\..\builduwp64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Release\static" />
+    <file src="..\..\..\builduwp64\Release\lib3MF_s.lib" target="\build\uap10.0\lib/x64\Release" />
+    <file src="..\..\..\builduwp64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Release" />
     <!-- Build (C++) -->
     <file src="..\..\..\..\Include\**\*" target="build\native\include" />
     <!-- Targets file -->
