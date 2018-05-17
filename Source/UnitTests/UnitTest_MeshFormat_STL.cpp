@@ -134,6 +134,6 @@ namespace NMR
 
 	};
 
-	const std::wstring MeshFormatTest_STL::sInPath = L"../../TestFiles/VS_UnitTests/";
+	const std::wstring MeshFormatTest_STL::sInPath = L"../../../TestFiles/VS_UnitTests/";
 	const std::wstring MeshFormatTest_STL::sOutPath = L"../TestOutput/";
 }
