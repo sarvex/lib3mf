@@ -334,6 +334,6 @@ namespace NMR
 		}
 	};
 
-	const std::wstring ModelTest::sInPath = L"../../TestFiles/VS_UnitTests/";
+	const std::wstring ModelTest::sInPath = L"../../../TestFiles/VS_UnitTests/";
 	const std::wstring ModelTest::sOutPath = L"../TestOutput/";
 }
