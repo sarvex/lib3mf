@@ -42,7 +42,7 @@ function BuildPlatform($platform, $path, $isUWP)
             )
         }
 
-        & cmake $argList "..\.."
+        & cmake $argList "-Wno-dev" "..\.."
 
     }
     finally
