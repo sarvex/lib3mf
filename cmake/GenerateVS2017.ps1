@@ -30,7 +30,8 @@ function BuildPlatform($platform, $path, $isUWP)
     {
         $argList = @(
             "-G", "$platform",
-            "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH"
+            "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH",
+            "-Wno-dev"
         )
 
         # Add UWP arguments for UWP build
@@ -42,7 +43,7 @@ function BuildPlatform($platform, $path, $isUWP)
             )
         }
 
-        & cmake $argList "-Wno-dev" "..\.."
+        & cmake $argList "..\.."
 
     }
     finally
