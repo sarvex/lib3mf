@@ -47,5 +47,8 @@
     <file src="..\..\..\..\Include\**\*" target="build\native\include" />
     <!-- Targets file -->
     <file src="..\..\..\..\nuget\windows\lib3mf.windows.targets" target="\build\native" />
+    <!-- cmake files -->
+    <file src="..\..\..\..\nuget\windows\FindLib3MF.Win32.cmake" target="\" />
+    <file src="..\..\..\..\nuget\windows\FindLib3MF.WinRT.cmake" target="\" />
   </files>
 </package>
