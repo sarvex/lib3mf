@@ -13,6 +13,8 @@ BuildVS2017NuGet.ps1
 param(
 )
 
+$ErrorActionPreference = "stop"
+
 $MSbuildExe = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe"
 
 function BuildPlatform($path)
@@ -48,7 +50,8 @@ function Main
     BuildPlatform "buildwin64"
     BuildPlatform "builduwp32"
     BuildPlatform "builduwp64"
-    BuildPlatform "buildarm"
+    BuildPlatform "builduwparm"
+    BuildPlatform "builduwparm64"
 
     GenerateNuGet
 }

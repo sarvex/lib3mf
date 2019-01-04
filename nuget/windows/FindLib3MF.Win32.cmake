@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-# Try to determine whether we should include the ARM, x64, or x86 versions of the libraries
+# Try to determine whether we should include the x64, or x86 versions of the libraries
 # There is no good way (yet?) to generically determine the architecture of a build
 # The caller must specify the architecture as a component of the package
 # Examples:
