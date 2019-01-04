@@ -54,6 +54,16 @@
       <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\ARM\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ARM64 and Debug" Condition="'$(Platform.ToLower())' == 'arm64' And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\ARM64\Debug\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ARM64 and Release" Condition="'$(Platform.ToLower())' == 'arm64' And ( $(Configuration.ToLower().IndexOf('debug')) == -1 )">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\build\uap10.0\lib\ARM64\Release\lib3MF_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\build\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

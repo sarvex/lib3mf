@@ -22,14 +22,15 @@ function Clean
     Remove-Item "$PSScriptRoot/../build" -Recurse -Force | Write-Host
 }
 
-function BuildPlatform($platform, $path, $isUWP)
+function BuildPlatform($arch, $path, $isUWP)
 {
     New-Item -Path "$PSScriptRoot/../build" -Name $path -ItemType Directory -Force | Out-Null
     Push-Location "$PSScriptRoot/../build/$path" | Out-Null
     try
     {
         $argList = @(
-            "-G", "$platform",
+            "-G", "Visual Studio 15 2017"
+            "-A", $arch,
             "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH"
         )
 
@@ -58,11 +59,12 @@ function Main
         Clean
     }
 
-    BuildPlatform "Visual Studio 15 2017" "buildwin32" $false
-    BuildPlatform "Visual Studio 15 2017 Win64" "buildwin64" $false
-    BuildPlatform "Visual Studio 15 2017" "builduwp32" $true
-    BuildPlatform "Visual Studio 15 2017 Win64" "builduwp64" $true
-    BuildPlatform "Visual Studio 15 2017 ARM" "buildarm" $true
+    BuildPlatform "Win32" "buildwin32" $false
+    BuildPlatform "x64" "buildwin64" $false
+    BuildPlatform "Win32" "builduwp32" $true
+    BuildPlatform "x64" "builduwp64" $true
+    BuildPlatform "ARM" "builduwparm" $true
+    BuildPlatform "ARM64" "builduwparm64" $true
 }
 
 Main
