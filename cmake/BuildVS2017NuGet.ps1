@@ -48,6 +48,7 @@ function Main
 {
     BuildPlatform "buildwin32"
     BuildPlatform "buildwin64"
+    BuildPlatform "buildwinarm64"
     BuildPlatform "builduwp32"
     BuildPlatform "builduwp64"
     BuildPlatform "builduwparm"

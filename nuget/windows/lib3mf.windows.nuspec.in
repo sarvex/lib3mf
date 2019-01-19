@@ -25,6 +25,12 @@
     <!-- x64|Release -->
     <file src="..\..\..\buildwin64\Release\lib3MF_s.lib" target="\build\native\lib/x64\Release" />
     <file src="..\..\..\buildwin64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/x64\Release" />
+    <!-- ARM64|Debug -->
+    <file src="..\..\..\buildwinarm64\Debug\lib3MF_s.lib" target="\build\native\lib/ARM64\Debug" />
+    <file src="..\..\..\buildwinarm64\Debug\lib3MF_s.pdb" target="\build\native\lib/ARM64\Debug" />
+    <!-- ARM64|Release -->
+    <file src="..\..\..\buildwinarm64\Release\lib3MF_s.lib" target="\build\native\lib/ARM64\Release" />
+    <file src="..\..\..\buildwinarm64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/ARM64\Release" />
     <!-- UWPARM|Debug -->
     <file src="..\..\..\builduwparm\Debug\lib3MF_s.lib" target="\build\uap10.0\lib\ARM\Debug" />
     <file src="..\..\..\builduwparm\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM\Debug" />

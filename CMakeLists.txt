@@ -35,6 +35,8 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   if(NMR_COM_NATIVE)
 	add_definitions(-DNMR_COM_NATIVE)
   endif()
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
   
   string(REGEX REPLACE "/bin/[^/]*$" "" VCINSTALLDIR "${CMAKE_C_COMPILER}")
   message(STATUS "Guessed MSVC directory: ${VCINSTALLDIR}")

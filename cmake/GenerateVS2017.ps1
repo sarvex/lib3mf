@@ -61,6 +61,7 @@ function Main
 
     BuildPlatform "Win32" "buildwin32" $false
     BuildPlatform "x64" "buildwin64" $false
+    BuildPlatform "ARM64" "buildwinarm64" $false
     BuildPlatform "Win32" "builduwp32" $true
     BuildPlatform "x64" "builduwp64" $true
     BuildPlatform "ARM" "builduwparm" $true
