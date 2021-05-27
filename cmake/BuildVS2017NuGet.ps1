@@ -41,7 +41,9 @@ function BuildPlatform($path)
 
 function GenerateNuGet
 {
-    nuget pack $PSScriptRoot/../build/buildwin32/nuget/windows/lib3mf.windows.nuspec -OutputDirectory $PSScriptRoot/../build/nuget
+    $nuget = "$PSScriptRoot/../build/nuget.exe"
+    wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile $nuget
+    . $nuget pack $PSScriptRoot/../build/buildwin32/nuget/windows/lib3mf.windows.nuspec -OutputDirectory $PSScriptRoot/../build/nuget
 }
 
 function Main
