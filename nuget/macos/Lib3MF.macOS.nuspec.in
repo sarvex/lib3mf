@@ -14,9 +14,9 @@
   </metadata>
   <files>
     <!-- x64|Debug -->
-    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Debug/lib3MF_s.a" target="/build/native/lib/x64/Debug/static" />
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Debug/lib3MF_s.a" target="/build/native/lib/Debug/static" />
     <!-- x64|Release -->
-    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Release/lib3MF_s.a" target="/build/native/lib/x64/Release/static" />
+    <file src="${CMAKE_CURRENT_SOURCE_DIR}/build/macos/Release/lib3MF_s.a" target="/build/native/lib/Release/static" />
     <!-- Build (C++) -->
     <file src="${CMAKE_CURRENT_SOURCE_DIR}/include/**/*" target="/build/native/include" />
     <!-- CMake Module -->
