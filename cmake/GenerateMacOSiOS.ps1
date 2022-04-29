@@ -37,7 +37,7 @@ function GenerateProjectMacOS()
     Push-Location "$PSScriptRoot/../build/$MACOS_OUTPUT_FOLDER"
     try
     {
-      cmake -G Xcode "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH" ../..
+      cmake -G Xcode "-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64" "-DLIB3MF_VERSION_PATCH=$LIB3MF_VERSION_PATCH" ../..
     }
     finally
     {
