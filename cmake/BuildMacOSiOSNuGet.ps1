@@ -16,7 +16,8 @@ param(
     [switch]$NoIOS,
     [switch]$NoSimulator,
     [switch]$NoDebug,
-    [switch]$NoRelease
+    [switch]$NoRelease,
+    [switch]$StripDebugSymbols
 )
 
 $MACOS_OUTPUT_FOLDER = "macos"
@@ -54,6 +55,19 @@ function GenerateNuGetIOS()
     nuget pack $PSScriptRoot/../build/ios/nuget/ios/lib3mf.ios.nuspec -OutputDirectory $PSScriptRoot/../build/nuget
 }
 
+function StripDebugSymbols($path)
+{
+    Write-Host "Stripping debug symbols from $($path)"
+
+    $files = Get-ChildItem -Path $path -Recurse -Filter "*.a"
+
+    foreach ($file in $files)
+    {
+        Write-Host "`t`tStripping symbols:$($file.Name)"
+        strip -S $file.FullName -o $file.FullName
+    }
+}
+
 function Main()
 {
     if (!$NoMacOS)
@@ -69,6 +83,24 @@ function Main()
     if (!$NoSimulator)
     {
         BuildProject $PSScriptRoot/../build/$IOS_SIMULATOR_OUTPUT_FOLDER
+    }
+
+    if($StripDebugSymbols)
+    {
+        if (!$NoMacOS)
+        {
+            StripDebugSymbols $PSScriptRoot/../build/$MACOS_OUTPUT_FOLDER
+        }
+
+        if (!$NoIOS)
+        {
+            StripDebugSymbols $PSScriptRoot/../build/$IOS_OUTPUT_FOLDER
+        }
+
+        if (!$NoSimulator)
+        {
+            StripDebugSymbols $PSScriptRoot/../build/$IOS_SIMULATOR_OUTPUT_FOLDER
+        } 
     }
 
     if (!$NoNuGet)
