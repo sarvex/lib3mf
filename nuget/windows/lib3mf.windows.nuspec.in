@@ -18,43 +18,43 @@
     <file src="..\..\..\buildwin32\Debug\lib3MF_s.pdb" target="\build\native\lib\Win32\Debug" />
     <!-- Win32|Release -->
     <file src="..\..\..\buildwin32\Release\lib3MF_s.lib" target="\build\native\lib\Win32/Release" />
-    <file src="..\..\..\buildwin32\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib\Win32/Release" />
+    <file src="..\..\..\buildwin32\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\native\lib\Win32/Release" />
     <!-- x64|Debug -->
     <file src="..\..\..\buildwin64\Debug\lib3MF_s.lib" target="\build\native\lib/x64\Debug" />
     <file src="..\..\..\buildwin64\Debug\lib3MF_s.pdb" target="\build\native\lib/x64\Debug" />
     <!-- x64|Release -->
     <file src="..\..\..\buildwin64\Release\lib3MF_s.lib" target="\build\native\lib/x64\Release" />
-    <file src="..\..\..\buildwin64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/x64\Release" />
+    <file src="..\..\..\buildwin64\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\native\lib/x64\Release" />
     <!-- ARM64|Debug -->
     <file src="..\..\..\buildwinarm64\Debug\lib3MF_s.lib" target="\build\native\lib/ARM64\Debug" />
     <file src="..\..\..\buildwinarm64\Debug\lib3MF_s.pdb" target="\build\native\lib/ARM64\Debug" />
     <!-- ARM64|Release -->
     <file src="..\..\..\buildwinarm64\Release\lib3MF_s.lib" target="\build\native\lib/ARM64\Release" />
-    <file src="..\..\..\buildwinarm64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\native\lib/ARM64\Release" />
+    <file src="..\..\..\buildwinarm64\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\native\lib/ARM64\Release" />
     <!-- UWPARM|Debug -->
     <file src="..\..\..\builduwparm\Debug\lib3MF_s.lib" target="\build\uap10.0\lib\ARM\Debug" />
     <file src="..\..\..\builduwparm\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM\Debug" />
     <!-- UWPARM|Release -->
     <file src="..\..\..\builduwparm\Release\lib3MF_s.lib" target="\build\uap10.0\lib\ARM/Release" />
-    <file src="..\..\..\builduwparm\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM/Release" />
+    <file src="..\..\..\builduwparm\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM/Release" />
     <!-- UWPARM64|Debug -->
     <file src="..\..\..\builduwparm64\Debug\lib3MF_s.lib" target="\build\uap10.0\lib\ARM64\Debug" />
     <file src="..\..\..\builduwparm64\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM64\Debug" />
     <!-- UWPARM64|Release -->
     <file src="..\..\..\builduwparm64\Release\lib3MF_s.lib" target="\build\uap10.0\lib\ARM64/Release" />
-    <file src="..\..\..\builduwparm64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM64/Release" />
+    <file src="..\..\..\builduwparm64\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\uap10.0\lib\ARM64/Release" />
     <!-- UWP32|Debug -->
     <file src="..\..\..\builduwp32\Debug\lib3MF_s.lib" target="\build\uap10.0\lib\Win32\Debug" />
     <file src="..\..\..\builduwp32\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib\Win32\Debug" />
     <!-- UWP32|Release -->
     <file src="..\..\..\builduwp32\Release\lib3MF_s.lib" target="\build\uap10.0\lib\Win32/Release" />
-    <file src="..\..\..\builduwp32\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib\Win32/Release" />
+    <file src="..\..\..\builduwp32\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\uap10.0\lib\Win32/Release" />
     <!-- UWP64|Debug -->
     <file src="..\..\..\builduwp64\Debug\lib3MF_s.lib" target="\build\uap10.0\lib/x64\Debug" />
     <file src="..\..\..\builduwp64\Debug\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Debug" />
     <!-- UWP64|Release -->
     <file src="..\..\..\builduwp64\Release\lib3MF_s.lib" target="\build\uap10.0\lib/x64\Release" />
-    <file src="..\..\..\builduwp64\lib3MF_s.dir\Release\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Release" />
+    <file src="..\..\..\builduwp64\${NUSPEC_WIN_RELEASE_PDB_PREFIX}\lib3MF_s.pdb" target="\build\uap10.0\lib/x64\Release" />
     <!-- Build (C++) -->
     <file src="..\..\..\..\Include\**\*" target="build\native\include" />
     <!-- Targets file -->

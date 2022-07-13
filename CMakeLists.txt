@@ -15,6 +15,17 @@ set(CMAKE_INSTALL_BINDIR bin CACHE PATH "directory for installing binary files")
 set(CMAKE_INSTALL_LIBDIR lib CACHE PATH "directory for installing library files")
 set(CMAKE_INSTALL_INCLUDEDIR include/lib3mf CACHE PATH "directory for installing header files")
 
+if (MSVC)
+if((MSVC_VERSION GREATER 1920))
+	message("Setting CONTROL FLOW GUARD")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /guard:ehcont")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /guard:ehcont")
+    SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /guard:ehcont")
+	set(NUSPEC_WIN_RELEASE_PDB_PREFIX "Release")
+endif()
+	set(NUSPEC_WIN_RELEASE_PDB_PREFIX "lib3MF_s.dir\\Release")
+endif()
+
 set(NMR_COM_NATIVE CACHE BOOL FALSE) # by default, do not actually implement a COM interface
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   # using GCC
@@ -119,8 +130,8 @@ if (UNIX OR MINGW)
 	endif()
 else()
 	# wd4996 masks the deprecated-warning
-	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;/wd4996>")
-	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/Zi;/sdl;/WX;/Oi;/Gy;/FC;/wd4996>")
+	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC>")
+	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/Zi;/sdl;/WX;/Oi;/Gy;/FC>")
 endif()
 
 
@@ -164,8 +175,8 @@ if(LIB3MF_TESTS)
 		target_include_directories(${UNITTEST_NAME} PUBLIC "${VCINSTALLDIR}/../../../UnitTest/include")
 		target_include_directories(${UNITTEST_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/Include)
 	
-		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;-DNMR_USEASSERTIONS;-DNMR_UNITTESTS;/wd4996>")
-		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:RELEASE>:/O2;/sdl;/WX;/Oi;/Gy;/FC;/wd4996>")
+		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;-DNMR_USEASSERTIONS;-DNMR_UNITTESTS>")
+		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:RELEASE>:/O2;/sdl;/WX;/Oi;/Gy;/FC>")
 		
 		add_dependencies(${UNITTEST_NAME} ${PROJECT_NAME}_s)
 		target_link_libraries(${UNITTEST_NAME} ${PROJECT_NAME}_s)
