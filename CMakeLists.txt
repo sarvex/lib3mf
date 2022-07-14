@@ -16,14 +16,10 @@ set(CMAKE_INSTALL_LIBDIR lib CACHE PATH "directory for installing library files"
 set(CMAKE_INSTALL_INCLUDEDIR include/lib3mf CACHE PATH "directory for installing header files")
 
 if (MSVC)
-if((MSVC_VERSION GREATER 1920))
-	message("Setting CONTROL FLOW GUARD")
-    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /guard:ehcont")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /guard:ehcont")
-    SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /guard:ehcont")
-	set(NUSPEC_WIN_RELEASE_PDB_PREFIX "Release")
-endif()
-	set(NUSPEC_WIN_RELEASE_PDB_PREFIX "lib3MF_s.dir\\Release")
+	if((MSVC_VERSION GREATER 1920))
+		set(NUSPEC_WIN_RELEASE_PDB_PREFIX "Release")
+	endif()
+		set(NUSPEC_WIN_RELEASE_PDB_PREFIX "lib3MF_s.dir\\Release")
 endif()
 
 set(NMR_COM_NATIVE CACHE BOOL FALSE) # by default, do not actually implement a COM interface
@@ -134,6 +130,13 @@ else()
 	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/Zi;/sdl;/WX;/Oi;/Gy;/FC>")
 endif()
 
+if (MSVC)
+    # The /guard:ehcont option is available in Visual Studio 2019 version 16.7 and later. The feature is supported for 64-bit processes on a 64-bit OS.
+    if((MSVC_VERSION GREATER 1920) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
+        target_compile_options(${PROJECT_NAME}_s PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
+        target_link_options(${PROJECT_NAME}_s PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
+    endif()
+endif()
 
 #########################################################
 # Shared library
@@ -156,6 +159,14 @@ install(TARGETS ${PROJECT_NAME}
 install(DIRECTORY Include/Model DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 install(DIRECTORY Include/Common DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+
+if (MSVC)
+    # The /guard:ehcont option is available in Visual Studio 2019 version 16.7 and later. The feature is supported for 64-bit processes on a 64-bit OS.
+    if((MSVC_VERSION GREATER 1920) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
+        target_compile_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
+        target_link_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
+    endif()
+endif()
 
 #########################################################
 if(NOT DEFINED LIB3MF_TESTS)
