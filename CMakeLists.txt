@@ -16,11 +16,14 @@ set(CMAKE_INSTALL_LIBDIR lib CACHE PATH "directory for installing library files"
 set(CMAKE_INSTALL_INCLUDEDIR include/lib3mf CACHE PATH "directory for installing header files")
 
 if (MSVC)
-	if((MSVC_VERSION GREATER 1920))
+	if(MSVC_VERSION GREATER_EQUAL 1920)
 		set(NUSPEC_WIN_RELEASE_PDB_PREFIX "Release")
-	endif()
+	else()
 		set(NUSPEC_WIN_RELEASE_PDB_PREFIX "lib3MF_s.dir\\Release")
+	endif()
 endif()
+
+message("NUSPEC_WIN_RELEASE_PDB_PREFIX: ${NUSPEC_WIN_RELEASE_PDB_PREFIX}")
 
 set(NMR_COM_NATIVE CACHE BOOL FALSE) # by default, do not actually implement a COM interface
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
