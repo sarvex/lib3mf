@@ -126,13 +126,13 @@ if (UNIX OR MINGW)
 	endif()
 else()
 	# wd4996 masks the deprecated-warning
-	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC>")
+	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/sdl;/W3;/WX;/FC>")
 	target_compile_options(${PROJECT_NAME}_s PUBLIC "$<$<CONFIG:RELEASE>:/O2;/Zi;/sdl;/WX;/Oi;/Gy;/FC>")
 endif()
 
 if (MSVC)
     # The /guard:ehcont option is available in Visual Studio 2019 version 16.7 and later. The feature is supported for 64-bit processes on a 64-bit OS.
-    if((MSVC_VERSION GREATER 1920) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
+    if((MSVC_VERSION GREATER_EQUAL 1928) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
         target_compile_options(${PROJECT_NAME}_s PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
         target_link_options(${PROJECT_NAME}_s PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
     endif()
@@ -162,7 +162,7 @@ install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Include/ DESTINATION "${CMAKE_INST
 
 if (MSVC)
     # The /guard:ehcont option is available in Visual Studio 2019 version 16.7 and later. The feature is supported for 64-bit processes on a 64-bit OS.
-    if((MSVC_VERSION GREATER 1920) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
+    if((MSVC_VERSION GREATER_EQUAL 1928) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
         target_compile_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
         target_link_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:/guard:ehcont>")
     endif()
@@ -186,7 +186,7 @@ if(LIB3MF_TESTS)
 		target_include_directories(${UNITTEST_NAME} PUBLIC "${VCINSTALLDIR}/../../../UnitTest/include")
 		target_include_directories(${UNITTEST_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/Include)
 	
-		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;-DNMR_USEASSERTIONS;-DNMR_UNITTESTS>")
+		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/sdl;/W3;/WX;/FC;-DNMR_USEASSERTIONS;-DNMR_UNITTESTS>")
 		target_compile_options(${UNITTEST_NAME} PUBLIC "$<$<CONFIG:RELEASE>:/O2;/sdl;/WX;/Oi;/Gy;/FC>")
 		
 		add_dependencies(${UNITTEST_NAME} ${PROJECT_NAME}_s)

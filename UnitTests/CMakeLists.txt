@@ -27,7 +27,7 @@ set(CMAKE_CURRENT_BINARY_DIR ${CMAKE_BINARY_DIR})
 add_executable(${TEST_CINTERFACE} ${SRCS_UNITTEST})
 
 if (WIN32)
-	target_compile_options(${TEST_CINTERFACE} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/Gm;/sdl;/W3;/WX;/FC;/MTd>")
+	target_compile_options(${TEST_CINTERFACE} PUBLIC "$<$<CONFIG:DEBUG>:/Od;/Ob0;/sdl;/W3;/WX;/FC;/MTd>")
 	target_compile_options(${TEST_CINTERFACE} PUBLIC "$<$<CONFIG:RELEASE>:/O2;/sdl;/WX;/Oi;/Gy;/FC;/MT>")
 endif()
 
